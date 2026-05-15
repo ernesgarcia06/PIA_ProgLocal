@@ -8,15 +8,15 @@ La aplicación también incorpora herramientas de generación de reportes en **P
 
 ---
 
-## ✨ Funcionalidades Principales
+## Funcionalidades Principales
 
-### 👤 Usuario
+### Usuario
 - ✅ Visualización del catálogo de videojuegos
 - ✅ Compra de videojuegos
 - ✅ Consulta de perfil de usuario
 - ✅ Navegación sencilla e intuitiva
 
-### 🛠️ Administrador
+### Administrador
 - ✅ Agregar videojuegos
 - ✅ Editar información de juegos
 - ✅ Eliminar videojuegos
@@ -26,7 +26,7 @@ La aplicación también incorpora herramientas de generación de reportes en **P
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 | Tecnología | Uso |
 |------------|-----|
@@ -39,7 +39,7 @@ La aplicación también incorpora herramientas de generación de reportes en **P
 
 ---
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```text
 GameStoreApp/
@@ -53,7 +53,7 @@ GameStoreApp/
 
 ---
 
-## 🚀 Instalación y Ejecución
+## Instalación y Ejecución
 
 ### 1. Clonar el repositorio
 
@@ -77,6 +77,6 @@ o seleccionar **Iniciar depuración** desde Visual Studio.
 
 ---
 
-## 🎯 Objetivo del Proyecto
+## Objetivo del Proyecto
 
-El propósito de **GameStoreApp** es facilitar la administración de una tienda de videojuegos mediante una plataforma intuitiva que permita a los usuarios comprar videojuegos y gestionar su perfil, mientras que los administradores pueden controlar el catálogo y generar reportes para mejorar la organización y el control de la información.
+El propósito de **Gaura** es facilitar la administración de una tienda de videojuegos mediante una plataforma intuitiva que permita a los usuarios comprar videojuegos y gestionar su perfil, mientras que los administradores pueden controlar el catálogo y generar reportes para mejorar la organización y el control de la información.
