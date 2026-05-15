@@ -1,0 +1,35 @@
+[
+  {
+    "username": "demo",
+    "password": "Demo123@",
+    "role": "user",
+    "activo": true,
+    "wishlist": [],
+    "purchasedGames": [],
+    "registrosCompras": [],
+    "registrosDeseos": [],
+    "reviews": []
+  },
+  {
+    "username": "admin",
+    "password": "Admin123@",
+    "role": "admin",
+    "activo": true,
+    "wishlist": [],
+    "purchasedGames": [],
+    "registrosCompras": [],
+    "registrosDeseos": [],
+    "reviews": []
+  },
+  {
+    "username": "godadmin",
+    "password": "GodAdmin1@",
+    "role": "godadmin",
+    "activo": true,
+    "wishlist": [],
+    "purchasedGames": [],
+    "registrosCompras": [],
+    "registrosDeseos": [],
+    "reviews": []
+  }
+]

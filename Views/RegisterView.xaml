@@ -1,0 +1,121 @@
+<UserControl
+    x:Class="GameStoreApp.Views.RegisterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{StaticResource LightGrayBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource CardStyle}"
+                Width="400"
+                HorizontalAlignment="Center"
+                Padding="32,28">
+            <StackPanel Spacing="16">
+
+                <StackPanel HorizontalAlignment="Center" Spacing="6">
+                    <TextBlock Text="Crear cuenta"
+                               Style="{StaticResource H1Style}"
+                               FontSize="22"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Completa los campos para registrarte"
+                               Style="{StaticResource SecondaryTextStyle}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Usuario" FontSize="13" FontWeight="SemiBold"
+                               Foreground="{StaticResource DarkTextBrush}"/>
+                    <TextBox x:Name="TxtUsername"
+                             Style="{StaticResource AppTextBoxStyle}"
+                             PlaceholderText="Elige un nombre de usuario"
+                             MaxLength="15"
+                             TextChanged="TxtUsername_TextChanged"/>
+                    <TextBlock x:Name="TxtUsernameError"
+                               Foreground="{StaticResource ErrorBrush}"
+                               FontSize="12"
+                               Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Contraseña" FontSize="13" FontWeight="SemiBold"
+                               Foreground="{StaticResource DarkTextBrush}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <PasswordBox x:Name="TxtPassword"
+                                     Grid.Column="0"
+                                     Style="{StaticResource AppPasswordBoxStyle}"
+                                     PlaceholderText="Crea una contraseña segura"
+                                     MaxLength="20"
+                                     PasswordChanged="TxtPassword_Changed"/>
+                        <TextBox x:Name="TxtPasswordVisible"
+                                 Grid.Column="0"
+                                 Style="{StaticResource AppTextBoxStyle}"
+                                 PlaceholderText="Crea una contraseña segura"
+                                 MaxLength="20"
+                                 Visibility="Collapsed"
+                                 TextChanged="TxtPasswordVisible_TextChanged"/>
+                        <Button Grid.Column="1"
+                                x:Name="BtnTogglePassword"
+                                Content=""
+                                Margin="4,0,0,0"
+                                Padding="8"
+                                CornerRadius="8"
+                                Click="BtnTogglePassword_Click"/>
+                    </Grid>
+                    <TextBlock x:Name="TxtPasswordError"
+                               Foreground="{StaticResource ErrorBrush}"
+                               FontSize="12"
+                               Visibility="Collapsed"/>
+                </StackPanel>
+
+                <Border Background="#EFF6FF" CornerRadius="8" Padding="12,8">
+                    <StackPanel Spacing="3">
+                        <TextBlock Text="Requisitos de contraseña:" FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource PrimaryBlueBrush}"/>
+                        <TextBlock x:Name="TxtReq1" Text="  • 6 a 20 caracteres"
+                                   FontSize="12" Foreground="{StaticResource SecondaryTextBrush}"/>
+                        <TextBlock x:Name="TxtReq2" Text="  • Al menos 1 letra mayúscula"
+                                   FontSize="12" Foreground="{StaticResource SecondaryTextBrush}"/>
+                        <TextBlock x:Name="TxtReq3" Text="  • Al menos 1 número"
+                                   FontSize="12" Foreground="{StaticResource SecondaryTextBrush}"/>
+                        <TextBlock x:Name="TxtReq4" Text="  • Al menos 1 especial (@,#,$,%)"
+                                   FontSize="12" Foreground="{StaticResource SecondaryTextBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock x:Name="TxtGeneralError"
+                           Foreground="{StaticResource ErrorBrush}"
+                           FontSize="13"
+                           TextWrapping="Wrap"
+                           Visibility="Collapsed"/>
+
+                <Button x:Name="BtnRegister"
+                        Content="Crear Cuenta"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalAlignment="Stretch"
+                        Click="BtnRegister_Click"/>
+
+                <Border Height="1" Background="{StaticResource MediumGrayBrush}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
+                    <TextBlock Text="¿Ya tienes cuenta?"
+                               Style="{StaticResource SecondaryTextStyle}"
+                               VerticalAlignment="Center"/>
+                    <Button Content="Iniciar Sesión"
+                            Style="{StaticResource BackButtonStyle}"
+                            Foreground="{StaticResource PrimaryBlueBrush}"
+                            FontWeight="SemiBold"
+                            Click="BtnGoLogin_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

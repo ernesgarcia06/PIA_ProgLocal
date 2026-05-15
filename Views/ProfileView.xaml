@@ -1,0 +1,111 @@
+<UserControl
+    x:Class="GameStoreApp.Views.ProfileView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{StaticResource LightGrayBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource WhiteBrush}" Padding="16,10"
+                BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="0,0,0,1">
+            <Button Style="{StaticResource BackButtonStyle}" Click="BotonRegresar_Click">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE72B;" FontSize="14" VerticalAlignment="Center"/>
+                    <TextBlock Text="Volver a la Tienda" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Border Grid.Row="1" Background="{StaticResource WhiteBrush}" Padding="24,18"
+                BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" Spacing="18" VerticalAlignment="Center">
+                <Border Width="64" Height="64" CornerRadius="32"
+                        Background="{StaticResource PrimaryBlueBrush}">
+                    <FontIcon Glyph="&#xE77B;" FontSize="30" Foreground="White"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel Spacing="6" VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtProfileUsername" Style="{StaticResource H2Style}"
+                               FontSize="22"/>
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE7FC;" FontSize="14"
+                                      Foreground="{StaticResource SecondaryTextBrush}"
+                                      VerticalAlignment="Center"/>
+                            <TextBlock x:Name="TxtPurchasedCount"
+                                       Style="{StaticResource SecondaryTextStyle}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xEB52;" FontSize="14"
+                                      Foreground="{StaticResource ErrorBrush}"
+                                      VerticalAlignment="Center"/>
+                            <TextBlock x:Name="TxtWishlistCount"
+                                       Style="{StaticResource SecondaryTextStyle}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xE8F2;" FontSize="14"
+                                      Foreground="{StaticResource SecondaryTextBrush}"
+                                      VerticalAlignment="Center"/>
+                            <TextBlock x:Name="TxtReviewsCount"
+                                       Style="{StaticResource SecondaryTextStyle}"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource WhiteBrush}"
+                    BorderBrush="{StaticResource CardBorderBrush}"
+                    BorderThickness="0,0,1,0" Padding="12,16">
+                <StackPanel Spacing="4">
+                    <Button x:Name="BtnTabPurchased"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Style="{StaticResource BackButtonStyle}"
+                            Foreground="{StaticResource PrimaryBlueBrush}"
+                            FontWeight="SemiBold" FontSize="14"
+                            Click="BotonComprados_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon Glyph="&#xE7FC;" FontSize="15" VerticalAlignment="Center"/>
+                            <TextBlock Text="Juegos comprados" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnTabWishlist"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Style="{StaticResource BackButtonStyle}" FontSize="14"
+                            Click="BotonListaDeseos_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon Glyph="&#xEB52;" FontSize="15" VerticalAlignment="Center"/>
+                            <TextBlock Text="Lista de deseos" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnTabReviews"
+                            HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                            Style="{StaticResource BackButtonStyle}" FontSize="14"
+                            Click="BotonResenias_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <FontIcon Glyph="&#xE8F2;" FontSize="15" VerticalAlignment="Center"/>
+                            <TextBlock Text="Mis reseñas" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <ScrollViewer Grid.Column="1" Padding="20,16">
+                <StackPanel x:Name="ProfileContentPanel" Spacing="12"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

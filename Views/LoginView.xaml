@@ -1,0 +1,158 @@
+<UserControl
+    x:Class="GameStoreApp.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#1a2c3d" Offset="0"/>
+                <GradientStop Color="#24384c" Offset="0.5"/>
+                <GradientStop Color="#2e4a63" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" Width="420" HorizontalAlignment="Center"
+                Background="White" CornerRadius="16"
+                BorderBrush="#e2e6eb" BorderThickness="1"
+                Padding="40,36">
+            <StackPanel Spacing="22">
+
+                <StackPanel HorizontalAlignment="Center" Spacing="10">
+                    <Border Width="130" Height="130" CornerRadius="20"
+                            Background="Transparent"
+                            HorizontalAlignment="Center">
+                        <Image Source="ms-appx:///Assets/gauraLOGO.png"
+                               Stretch="Uniform"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Inicio de sesión"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="{StaticResource DarkTextBrush}"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="Bienvenido a Gaura"
+                               FontSize="13"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Usuario" FontSize="13" FontWeight="SemiBold"
+                               Foreground="{StaticResource DarkTextBrush}"/>
+                    <Grid Height="42">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                Background="{StaticResource LightGrayBrush}"
+                                BorderBrush="{StaticResource MediumGrayBrush}"
+                                BorderThickness="1,1,0,1"
+                                CornerRadius="8,0,0,8" Padding="12,0" Width="44">
+                            <FontIcon Glyph="&#xE77B;" FontSize="15"
+                                      Foreground="{StaticResource SecondaryTextBrush}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBox x:Name="TxtUsername" Grid.Column="1"
+                                 Style="{StaticResource AppTextBoxStyle}"
+                                 PlaceholderText="Ingresa tu usuario"
+                                 MaxLength="15"
+                                 CornerRadius="0,8,8,0"
+                                 TextChanged="TxtUsername_TextChanged"
+                                 KeyDown="TxtNombreUsuario_KeyDown"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Contraseña" FontSize="13" FontWeight="SemiBold"
+                               Foreground="{StaticResource DarkTextBrush}"/>
+                    <Grid Height="42">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                Background="{StaticResource LightGrayBrush}"
+                                BorderBrush="{StaticResource MediumGrayBrush}"
+                                BorderThickness="1,1,0,1"
+                                CornerRadius="8,0,0,8" Padding="12,0" Width="44">
+                            <FontIcon Glyph="&#xE72E;" FontSize="15"
+                                      Foreground="{StaticResource SecondaryTextBrush}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <PasswordBox x:Name="TxtPassword" Grid.Column="1"
+                                     Style="{StaticResource AppPasswordBoxStyle}"
+                                     PlaceholderText="Ingresa tu contraseña"
+                                     MaxLength="20"
+                                     CornerRadius="0"
+                                     KeyDown="TxtContrasenia_KeyDown"/>
+                        <TextBox x:Name="TxtPasswordVisible" Grid.Column="1"
+                                 Style="{StaticResource AppTextBoxStyle}"
+                                 PlaceholderText="Ingresa tu contraseña"
+                                 MaxLength="20"
+                                 CornerRadius="0" Visibility="Collapsed"
+                                 TextChanged="TxtPasswordVisible_TextChanged"
+                                 KeyDown="TxtContrasenia_KeyDown"/>
+                        <Button x:Name="BtnTogglePassword" Grid.Column="2"
+                                Margin="8,0,0,0" Padding="10" CornerRadius="8"
+                                Background="{StaticResource LightGrayBrush}"
+                                BorderBrush="{StaticResource MediumGrayBrush}"
+                                BorderThickness="1"
+                                Click="BotonMostrarContrasenia_Click">
+                            <FontIcon x:Name="IconoOjo" Glyph="&#xE7B3;" FontSize="14"
+                                      Foreground="{StaticResource SecondaryTextBrush}"/>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+
+                <Border x:Name="BordeError" Visibility="Collapsed"
+                        Background="#fff5f5" BorderBrush="{StaticResource ErrorBrush}"
+                        BorderThickness="1" CornerRadius="8" Padding="12,8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE783;" FontSize="13"
+                                  Foreground="{StaticResource ErrorBrush}"
+                                  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TxtError"
+                                   Foreground="{StaticResource ErrorBrush}"
+                                   FontSize="13" TextWrapping="Wrap"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <Button x:Name="BtnLogin" Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalAlignment="Stretch" FontSize="14" Height="42"
+                        Click="BotonIniciarSesion_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                        <FontIcon Glyph="&#xE8A6;" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock Text="Iniciar Sesión" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Grid Height="1">
+                    <Border Background="{StaticResource MediumGrayBrush}"/>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
+                    <TextBlock Text="¿No tienes cuenta?"
+                               FontSize="13"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               VerticalAlignment="Center"/>
+                    <Button x:Name="BtnGoRegister" Content="Regístrate"
+                            Style="{StaticResource BackButtonStyle}"
+                            FontWeight="SemiBold" FontSize="13"
+                            Click="BotonIrRegistro_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

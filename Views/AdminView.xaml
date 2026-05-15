@@ -1,0 +1,447 @@
+<UserControl
+    x:Class="GameStoreApp.Views.AdminView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:views="using:GameStoreApp.Views">
+
+    <Grid Background="{StaticResource LightGrayBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" BorderBrush="{StaticResource CardBorderBrush}"
+                BorderThickness="0,0,0,1" Padding="24,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="14" VerticalAlignment="Center">
+                    <FontIcon Glyph="&#xE713;" FontSize="26"
+                              Foreground="{StaticResource PrimaryBlueBrush}"/>
+                    <StackPanel>
+                        <TextBlock Text="Panel de administración" Style="{StaticResource H1Style}"/>
+                        <TextBlock x:Name="TxtSubtitle" Text="" Style="{StaticResource SecondaryTextStyle}"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource SecondaryButtonStyle}"
+                        Click="BtnBack_Click">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE72B;" FontSize="13" VerticalAlignment="Center"/>
+                        <TextBlock Text="Regresar a tienda" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <Pivot Grid.Row="1" x:Name="AdminPivot" Margin="16,8,16,0"
+               SelectionChanged="AdminPivot_SelectionChanged">
+
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE7FC;" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock Text="Gestión de juegos" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="White"
+                            BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                            Margin="0,8,8,8" CornerRadius="12">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Padding="16,12,16,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="TxtSearchGame" Grid.Column="0"
+                                             PlaceholderText="Buscar juego..."
+                                             MaxLength="60"
+                                             VerticalAlignment="Stretch"
+                                             CornerRadius="6,0,0,6"
+                                             TextChanged="TxtSearchGame_TextChanged"/>
+                                    <Button x:Name="BtnSearchGame" Grid.Column="1"
+                                            Style="{StaticResource PrimaryButtonStyle}"
+                                            Padding="10,8" CornerRadius="0,6,6,0"
+                                            Click="BtnSearchGame_Click">
+                                        <FontIcon Glyph="&#xE721;" FontSize="13"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <ScrollViewer Grid.Row="1" Padding="12,4,12,12">
+                                <StackPanel x:Name="GamesListPanel" Spacing="6"/>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="White"
+                            BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                            Margin="0,8,0,8" CornerRadius="12" Padding="20">
+                        <ScrollViewer>
+                            <StackPanel Spacing="14">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <FontIcon x:Name="FormIcon" Glyph="&#xE710;" FontSize="18"
+                                              Foreground="{StaticResource PrimaryBlueBrush}"
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtFormTitle" Text="Agregar nuevo juego"
+                                               Style="{StaticResource H2Style}" FontSize="17"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Nombre del juego" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox x:Name="TxtName" PlaceholderText="Ej: Cyberpunk 2100"
+                                             MaxLength="60"
+                                             TextChanged="TxtName_TextChanged"/>
+                                    <TextBlock x:Name="TxtNameError"
+                                               Foreground="{StaticResource ErrorBrush}"
+                                               FontSize="11" Visibility="Collapsed"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Precio (MXN)" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox x:Name="TxtPrice" PlaceholderText="Ej: 649"
+                                             MaxLength="7"
+                                             TextChanged="TxtPrice_TextChanged"/>
+                                    <TextBlock x:Name="TxtPriceError"
+                                               Foreground="{StaticResource ErrorBrush}"
+                                               FontSize="11" Visibility="Collapsed"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Año de lanzamiento" Style="{StaticResource LabelStyle}"/>
+                                    <Border BorderBrush="{StaticResource MediumGrayBrush}"
+                                            BorderThickness="1" CornerRadius="8"
+                                            Background="White" Padding="12,8">
+                                        <StackPanel Spacing="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock x:Name="TxtAnioSeleccionado"
+                                                           Grid.Column="0"
+                                                           Text="Sin seleccionar"
+                                                           FontSize="13"
+                                                           Foreground="{StaticResource SecondaryTextBrush}"
+                                                           VerticalAlignment="Center"/>
+                                                <Button Grid.Column="1" x:Name="BtnAnioAnterior"
+                                                        Padding="6,4" Margin="4,0,0,0"
+                                                        CornerRadius="4"
+                                                        Background="{StaticResource LightGrayBrush}"
+                                                        BorderThickness="0"
+                                                        Click="BtnAnioAnterior_Click">
+                                                    <FontIcon Glyph="&#xE70E;" FontSize="10"/>
+                                                </Button>
+                                                <Button Grid.Column="2" x:Name="BtnAnioSiguiente"
+                                                        Padding="6,4" Margin="4,0,0,0"
+                                                        CornerRadius="4"
+                                                        Background="{StaticResource LightGrayBrush}"
+                                                        BorderThickness="0"
+                                                        Click="BtnAnioSiguiente_Click">
+                                                    <FontIcon Glyph="&#xE70D;" FontSize="10"/>
+                                                </Button>
+                                            </Grid>
+                                            <GridView x:Name="GridAnios"
+                                                      SelectionMode="Single"
+                                                      SelectionChanged="GridAnios_SelectionChanged">
+                                                <GridView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding}"
+                                                                   FontSize="13"
+                                                                   Width="56"
+                                                                   TextAlignment="Center"
+                                                                   Padding="4,6"/>
+                                                    </DataTemplate>
+                                                </GridView.ItemTemplate>
+                                                <GridView.ItemContainerStyle>
+                                                    <Style TargetType="GridViewItem">
+                                                        <Setter Property="Margin" Value="2"/>
+                                                        <Setter Property="Padding" Value="0"/>
+                                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                                    </Style>
+                                                </GridView.ItemContainerStyle>
+                                            </GridView>
+                                        </StackPanel>
+                                    </Border>
+                                    <TextBlock x:Name="TxtYearError"
+                                               Foreground="{StaticResource ErrorBrush}"
+                                               FontSize="11" Visibility="Collapsed"/>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Categoría" Style="{StaticResource LabelStyle}"/>
+                                    <ComboBox x:Name="CmbCategory" HorizontalAlignment="Stretch"
+                                              PlaceholderText="Selecciona categoría">
+                                        <ComboBoxItem Content="RPG"/>
+                                        <ComboBoxItem Content="Shooter"/>
+                                        <ComboBoxItem Content="Aventura"/>
+                                        <ComboBoxItem Content="Estrategia"/>
+                                        <ComboBoxItem Content="Simulación"/>
+                                        <ComboBoxItem Content="Carreras"/>
+                                        <ComboBoxItem Content="Plataformas"/>
+                                        <ComboBoxItem Content="Terror"/>
+                                        <ComboBoxItem Content="Puzzle"/>
+                                        <ComboBoxItem Content="MMORPG"/>
+                                        <ComboBoxItem Content="Deportes"/>
+                                        <ComboBoxItem Content="Sandbox"/>
+                                        <ComboBoxItem Content="Rol"/>
+                                        <ComboBoxItem Content="Battle Royale"/>
+                                        <ComboBoxItem Content="Otro"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Imagen del juego" Style="{StaticResource LabelStyle}"/>
+                                    <Border x:Name="ImagePreviewBorder"
+                                            Height="120" CornerRadius="8"
+                                            Background="{StaticResource LightGrayBrush}"
+                                            BorderBrush="{StaticResource CardBorderBrush}"
+                                            BorderThickness="1">
+                                        <Grid>
+                                            <StackPanel x:Name="ImagePlaceholder"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center" Spacing="6">
+                                                <FontIcon Glyph="&#xEB9F;" FontSize="32"
+                                                          Foreground="{StaticResource MediumGrayBrush}"
+                                                          HorizontalAlignment="Center"/>
+                                                <TextBlock Text="Sin imagen seleccionada"
+                                                           Style="{StaticResource SecondaryTextStyle}"
+                                                           HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                            <Image x:Name="ImgPreview"
+                                                   Stretch="Uniform"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="Collapsed"/>
+                                        </Grid>
+                                    </Border>
+                                    <Button x:Name="BtnSelectImage"
+                                            Style="{StaticResource SecondaryButtonStyle}"
+                                            HorizontalAlignment="Stretch"
+                                            Click="BtnSelectImage_Click">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Seleccionar imagen" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock x:Name="TxtImageFileName"
+                                               Text="Ninguna imagen seleccionada"
+                                               Style="{StaticResource SecondaryTextStyle}"
+                                               FontSize="11"
+                                               TextTrimming="CharacterEllipsis"/>
+                                </StackPanel>
+
+                                <StackPanel Spacing="6">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <FontIcon Glyph="&#xE8B9;" FontSize="14"
+                                                  Foreground="{StaticResource SecondaryTextBrush}"
+                                                  VerticalAlignment="Center"/>
+                                        <TextBlock Text="Fotos adicionales" Style="{StaticResource LabelStyle}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                  VerticalScrollBarVisibility="Disabled"
+                                                  Height="80">
+                                        <StackPanel x:Name="PhotosPreviewPanel"
+                                                    Orientation="Horizontal" Spacing="6"/>
+                                    </ScrollViewer>
+
+                                    <Button x:Name="BtnAddPhoto"
+                                            Style="{StaticResource SecondaryButtonStyle}"
+                                            HorizontalAlignment="Stretch"
+                                            Click="BtnAddPhoto_Click">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                            <FontIcon Glyph="&#xE8B9;" FontSize="13" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Agregar foto" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <TextBlock x:Name="TxtPhotosCount"
+                                               Text="0 fotos agregadas"
+                                               Style="{StaticResource SecondaryTextStyle}"
+                                               FontSize="11"/>
+                                </StackPanel>
+
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="Descripción" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox x:Name="TxtDescription"
+                                             PlaceholderText="Describe el juego..."
+                                             TextWrapping="Wrap" AcceptsReturn="True" Height="90"/>
+                                </StackPanel>
+
+                                <TextBlock x:Name="TxtFormMessage" Visibility="Collapsed"
+                                           TextWrapping="Wrap" FontSize="13"/>
+
+                                <StackPanel Spacing="8" Margin="0,4,0,0">
+                                    <Button x:Name="BtnSave" Style="{StaticResource PrimaryButtonStyle}"
+                                            HorizontalAlignment="Stretch" Click="BtnSave_Click">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                            <FontIcon x:Name="BtnSaveIcon" Glyph="&#xE710;" FontSize="14"/>
+                                            <TextBlock x:Name="BtnSaveText" Text="Agregar juego"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button x:Name="BtnCancel" Style="{StaticResource SecondaryButtonStyle}"
+                                            HorizontalAlignment="Stretch" Visibility="Collapsed"
+                                            Click="BtnCancel_Click">
+                                        <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                                            <FontIcon Glyph="&#xE711;" FontSize="14"/>
+                                            <TextBlock Text="Cancelar edición"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </PivotItem>
+
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE716;" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock Text="Gestionar administradores" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </PivotItem.Header>
+                <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="360"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="White"
+                            BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                            Margin="0,0,8,8" CornerRadius="12">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Background="{StaticResource LightGrayBrush}"
+                                    Padding="16,12" CornerRadius="12,12,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Usuario"
+                                               Style="{StaticResource LabelStyle}"
+                                               VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="Rol"
+                                               Style="{StaticResource LabelStyle}"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               TextAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="Acciones"
+                                               Style="{StaticResource LabelStyle}"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               TextAlignment="Center"
+                                               MinWidth="200"/>
+                                </Grid>
+                            </Border>
+                            <ScrollViewer Grid.Row="1" Padding="0,4,0,12">
+                                <StackPanel x:Name="UsersListPanel" Spacing="4"/>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="1" Background="White"
+                            BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                            Margin="0,0,0,8" CornerRadius="12" Padding="20">
+                        <StackPanel Spacing="16">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <FontIcon Glyph="&#xE716;" FontSize="20"
+                                          Foreground="{StaticResource PrimaryBlueBrush}"/>
+                                <TextBlock Text="Roles del sistema" Style="{StaticResource H2Style}"/>
+                            </StackPanel>
+
+                            <Border Background="{StaticResource LightGrayBrush}"
+                                    CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="6">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <FontIcon Glyph="&#xE77B;" FontSize="16"
+                                                  Foreground="{StaticResource SecondaryTextBrush}"/>
+                                        <TextBlock Text="Usuario (user)" FontWeight="SemiBold" FontSize="13"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Acceso a tienda y perfil. Puede comprar juegos, agregar a lista de deseos y escribir reseñas."
+                                               Style="{StaticResource SecondaryTextStyle}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="{StaticResource LightGrayBrush}"
+                                    CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="6">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <FontIcon Glyph="&#xE713;" FontSize="16"
+                                                  Foreground="{StaticResource PrimaryBlueBrush}"/>
+                                        <TextBlock Text="Administrador (admin)" FontWeight="SemiBold" FontSize="13"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Puede gestionar juegos, ver reportes y desactivar usuarios normales. No puede modificar otros admins."
+                                               Style="{StaticResource SecondaryTextStyle}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="{StaticResource LightGrayBrush}"
+                                    CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="6">
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <FontIcon Glyph="&#xE734;" FontSize="16" Foreground="#B48B0A"/>
+                                        <TextBlock Text="God Admin (godadmin)" FontWeight="SemiBold"
+                                                   FontSize="13"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Control total del sistema. Puede promover y degradar admins, activar o desactivar cualquier usuario. No puede ser eliminado ni desactivado."
+                                               Style="{StaticResource SecondaryTextStyle}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#FFF3CD" BorderBrush="#FFEEBA"
+                                    BorderThickness="1" CornerRadius="8" Padding="14">
+                                <StackPanel Spacing="4">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <FontIcon Glyph="&#xE7BA;" FontSize="14" Foreground="#856404"/>
+                                        <TextBlock Text="Importante" FontWeight="SemiBold"
+                                                   FontSize="12" Foreground="#856404"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Solo el godadmin puede promover o degradar administradores."
+                                               FontSize="12" TextWrapping="Wrap" Foreground="#856404"/>
+                                </StackPanel>
+                            </Border>
+
+                            <TextBlock x:Name="TxtAdminMessage" Visibility="Collapsed"
+                                       TextWrapping="Wrap" FontSize="13" Margin="0,4,0,0"/>
+
+                            <TextBlock x:Name="TxtUserCount"
+                                       Style="{StaticResource SecondaryTextStyle}"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </PivotItem>
+
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <FontIcon Glyph="&#xE9F9;" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock Text="Reportes" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </PivotItem.Header>
+                <views:ReportesView x:Name="VistaReportes" Margin="0,8,0,0"/>
+            </PivotItem>
+
+        </Pivot>
+    </Grid>
+</UserControl>
