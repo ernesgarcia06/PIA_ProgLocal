@@ -1,8 +1,8 @@
-# 🎮 GameStoreApp
+# 🎮 Gaura
 
 ## 📌 Descripción del Proyecto
 
-**GameStoreApp** es una aplicación de escritorio desarrollada en **C# y WinUI 3**, enfocada en la gestión de una tienda de videojuegos. El sistema permite a los usuarios explorar y adquirir videojuegos, además de consultar la información de su perfil. Por otro lado, cuenta con un panel administrativo que facilita la gestión del catálogo mediante funciones de registro, edición y eliminación de videojuegos.
+**Gaura** es una aplicación de escritorio desarrollada en **C# y WinUI 3**, enfocada en la gestión de una tienda de videojuegos. El sistema permite a los usuarios explorar y adquirir videojuegos, además de consultar la información de su perfil. Por otro lado, cuenta con un panel administrativo que facilita la gestión del catálogo mediante funciones de registro, edición y eliminación de videojuegos.
 
 La aplicación también incorpora herramientas de generación de reportes en **PDF**, permitiendo un mejor control y organización de la información del sistema.
 
